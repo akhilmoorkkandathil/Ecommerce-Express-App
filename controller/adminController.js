@@ -85,7 +85,7 @@ const dashboard = async(req,res,next)=> {
           
           const totalOrdersByCategory = await orderModel.aggregate(pipeline);
           console.log(totalOrdersByCategory);
-          let total = parseInt(payments[0].totalAmount/1000)
+          const total = parseInt(payments[0].totalAmount/1000)
 
     await res.render('./admin/dashboard',{Admin:true,adminName,ordersCount,payments:payments[0].payments,total:total,orderCounts:orderCounts,totalOrdersByCategory:totalOrdersByCategory})
   } catch (error) {
@@ -162,7 +162,7 @@ const userList = async(req,res ,next)=>{
     const users = await userModel.find().skip(skip).limit(limit);
     // console.log(users);
     let obj=[]
-        let maps =users.map((item)=>{
+        users.map((item)=>{
             let test={
                 "_id":item._id,
                 "username":item.username,
